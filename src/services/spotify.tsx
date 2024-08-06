@@ -1,35 +1,37 @@
 //File for Spotify API calls
 const spotifyClientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-const spotifySecret = import.meta.env.VITE_SPOTIFY_SECRET;
+const redirectUri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;
 let accessToken = {};
 
-const accessUrl = "https://accounts.spotify.com/api";
+const authUrl = "https://accounts.spotify.com/authorize";
 const baseUrl = "https://api.spotify.com/v1";
 
 const Spotify = {
-    getAccessToken: async () => {
-        console.log(spotifyClientId, spotifySecret)
-        try {
-            const response = await fetch(`${accessUrl}/token?grant_type=client_credentials&client_id=${spotifyClientId}&client_secret=${spotifySecret}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-            });
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+    getAccessToken: () => {
+        const accessToken = localStorage.getItem('spotifyAccessToken');
+        const expiryTime = localStorage.getItem('spotifyTokenExpiry');
+        console.log(redirectUri)
+        if (accessToken && expiryTime && Number(expiryTime) > Date.now()) {
+            return accessToken;
+        }
 
-            const data = await response.json();
-            if (!data.access_token) {
-                throw new Error("No access token received from Spotify");
-            }
+        const accessTokenMatch = window.location.hash.match(/access_token=([^&]*)/);
+        const expiresInMatch = window.location.hash.match(/expires_in=([^&]*)/);
 
-            return accessToken = data.access_token;
-        } catch (error) {
-            console.error("Failed to get Spotify access token:", error);
-            throw error; // Re-throw the error so it can be handled by the caller
+        if (accessTokenMatch && expiresInMatch) {
+            const newAccessToken = accessTokenMatch[1];
+            const expiresIn = Number(expiresInMatch[1]);
+            const newExpiryTime = Date.now() + expiresIn * 1000;
+
+            localStorage.setItem('spotifyAccessToken', newAccessToken);
+            localStorage.setItem('spotifyTokenExpiry', newExpiryTime.toString());
+
+            window.location.hash = '';
+            return newAccessToken;
+        } else {
+            const scope = 'user-read-private user-read-email playlist-modify-public';
+            window.location.href = `${authUrl}?client_id=${spotifyClientId}&response_type=token&redirect_uri=${redirectUri}&scope=${encodeURIComponent(scope)}`;
         }
     },
 
