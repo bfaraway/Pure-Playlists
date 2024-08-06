@@ -1,9 +1,10 @@
-import React from "react";
+
 
 const Btn = (props: any) => {   
 
     return (
-            <button className="bg-black hover:bg-gray-700 text-white px-4 py-2 rounded" onClick={props.onClick}>{props.text} {props.icon}</button>
+            <button className=" min-w-24 bg-black hover:bg-gray-700 text-white px-4 py-2 rounded flex items-center justify-center flex-row" 
+            onClick={props.onClick}>{props.text} {props.icon}</button>
     );
 };
 

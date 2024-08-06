@@ -18,4 +18,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
+@media (max-width: 768px) {
+  :root {
+    padding: 1rem;
+  }
+}
