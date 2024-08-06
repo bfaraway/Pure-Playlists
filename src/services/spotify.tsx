@@ -50,8 +50,12 @@ const Spotify = {
             const Songs = await response.json();
             console.log(Songs);
             return Songs.tracks.items.map((song: any) => ({
+                id: song.id,
                 name: song.name,
                 artist: song.artists[0].name,
+                album: song.album.name,
+                uri: song.uri,
+                previewUrl: song.preview_url
             })); 
             
         } catch (error) {

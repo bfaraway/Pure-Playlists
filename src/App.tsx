@@ -7,6 +7,10 @@ import Spotify from './services/spotify'
 type Song = {
   name: string;
   artist: string;
+  album: string;
+  uri: string;
+  id: string;
+  previewUrl: string;
 };
 
 function App() {
@@ -50,7 +54,11 @@ function App() {
                   key={index}
                   title={song.name}
                   artist={song.artist}
+                  album={song.album}
+                  uri={song.uri}
+                  id={song.id}
                   onClick={() => addToPlaylist(song)}
+                  previewUrl={song.previewUrl}
                 />
               ))}
             </div>
@@ -62,7 +70,11 @@ function App() {
                   key={index}
                   title={song.name}
                   artist={song.artist}
+                  album={song.album}
+                  uri={song.uri}
+                  id={song.id}
                   onClick={() => removeFromPlaylist(index)}
+                  previewUrl={song.previewUrl}
                 />
               ))}
             </div>
