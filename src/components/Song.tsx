@@ -9,7 +9,7 @@ type SongProps = {
 const Song: React.FC<SongProps> = (props) => {
 
     return (
-        <div className="flex items-start flex-col p-2 border-b-2 border-gray-800 hover:bg-gray-100" onClick={props.onClick}>
+        <div className="flex items-start flex-col p-2 border-b-1 border-gray-100 hover:bg-gray-100" onClick={props.onClick}>
             <p>{props.title}</p>
             <p className="text-sm text-gray-800">{props.artist}</p> 
         </div>

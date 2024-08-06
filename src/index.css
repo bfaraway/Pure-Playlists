@@ -18,6 +18,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+#empty-state-image {
+  animation: spin 5s linear infinite;
+}
+
 @media (max-width: 768px) {
   :root {
     padding: 1rem;

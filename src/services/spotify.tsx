@@ -53,7 +53,7 @@ const Spotify = {
                 name: song.name,
                 artist: song.artists[0].name,
             })); 
-            console.log(Songs);
+            
         } catch (error) {
             console.error("Failed to search for song:", error);
             throw error; // Re-throw the error so it can be handled by the caller

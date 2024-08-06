@@ -6,7 +6,11 @@ export default {
     "./index.html"
   ],
   theme: {
-    extend: {},
+    extend: {
+      borderWidth: {
+        '1': '1px',
+      },
+    },
   },
   plugins: [],
 }
