@@ -1,10 +1,9 @@
 import React from "react";
 
-const Btn = (props: any) => {
+const Btn = (props: any) => {   
+
     return (
-        <div className="flex items-center justify-center">
-            <button className="bg-black text-white px-4 py-2 rounded-md">{props.text}</button>
-        </div>
+            <button className="bg-black hover:bg-gray-700 text-white px-4 py-2 rounded" onClick={props.onClick}>{props.text} {props.icon}</button>
     );
 };
 

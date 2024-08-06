@@ -1,34 +1,25 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 import Btn from './components/Btn'
+import SearchBar from './components/SearchBar'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
+    <header className="flex items-center justify-between mb-6">
+      <h1 className="text-2xl">Playlist App</h1>
+      <img src="/src/assets/spotify-logo.svg" alt="Spotify Logo" className="w-6 h-6 mr-2" />
+    </header>
+    <div className="flex flex-col items-center justify-center">
+      <div className="flex items-center justify-between mb-6">
+        <SearchBar />
+      </div>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <Btn text="Play" />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <Btn id="play" text="Play" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+    </div>
+      <p className="flex bottom-0 items-center justify-center color-gray-800 mt-11 ">
+        Made by <a className="text-blue-500 ml-1" href="https://github.com/bfaraway" target="_blank">Magnus Bjelland</a>
       </p>
     </>
   )
