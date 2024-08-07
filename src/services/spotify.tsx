@@ -1,6 +1,6 @@
 //File for Spotify API calls
 const spotifyClientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-const redirectUri = "https://pureplaylists.netlify.app";
+const redirectUri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;
 
 const authUrl = "https://accounts.spotify.com/authorize";
 const baseUrl = "https://api.spotify.com/v1";
