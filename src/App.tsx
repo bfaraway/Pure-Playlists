@@ -57,7 +57,7 @@ function App() {
       <header className="flex items-center justify-between mb-6">
         <h1 className="text-2xl">Pure Playlists</h1>
         <img
-          src="/src/assets/spotify-logo.svg"
+          src="/src/assets/spotify-logo.png"
           alt="Spotify Logo"
           className="w-6 h-6 mr-2"
         />
@@ -139,7 +139,7 @@ function App() {
             )}
             <img
               id="empty-state-image"
-              src="/src/assets/vinyl-record.svg"
+              src="/src/assets/vinyl-record.png"
               alt="Empty state"
               className="w-8 h-8 mr-2 animate-spin mt-4"
             />
