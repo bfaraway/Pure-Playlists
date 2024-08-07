@@ -16,9 +16,8 @@ type Song = {
 function App() {
   const [searchResults, setSearchResults] = useState<Song[]>([]);
   const [playlist, setPlaylist] = useState<Song[]>([]);
-  const [playlistName, setPlaylistName] = useState<string>(
-    "Rename your playlist"
-  );
+  const [playlistName, setPlaylistName] = useState<string>("Pure playlist");
+  const [showThankYou, setShowThankYou] = useState<boolean>(false);
 
   const handleSearch = async (query: string) => {
     const results = await Spotify.SearchSong(query);
@@ -31,9 +30,15 @@ function App() {
       playlistName,
       playlist.map((song) => song.uri)
     );
-    setPlaylistName("Rename your playlist");
+    setPlaylistName("Pure playlist");
     setPlaylist([]);
+    setSearchResults([]);
+    setShowThankYou(true);
   };
+
+  setTimeout(() => {
+    setShowThankYou(false);
+  }, 3000);
 
   const addToPlaylist = (song: Song) => {
     setPlaylist([...playlist, song]);
@@ -126,7 +131,12 @@ function App() {
             id="empty-state"
             className=" h-96 flex flex-col items-center justify-center w-full rounded-lg p-4 bg-white"
           >
-            <p>No tracks found, start with searching for a track</p>
+            {showThankYou && (
+              <p>Thank you! Your playlist has been saved on Spotify</p>
+            )}
+            {!showThankYou && (
+              <p>Search for a track to get started</p>
+            )}
             <img
               id="empty-state-image"
               src="/src/assets/vinyl-record.svg"
@@ -137,7 +147,7 @@ function App() {
         )}
       </div>
 
-      <p className="flex bottom-0 items-center justify-center color-gray-800 mt-11 ">
+      <p className="flex bottom-0 items-center justify-center color-gray-800 mt-4 ">
         Made by{" "}
         <a
           className="text-blue-500 ml-1"
