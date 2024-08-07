@@ -27,7 +27,10 @@ function App() {
   };
 
   const handleSavePlaylist = async () => {
-    await Spotify.savePlaylist(playlistName, playlist.map((song) => song.uri));
+    await Spotify.savePlaylist(
+      playlistName,
+      playlist.map((song) => song.uri)
+    );
     setPlaylistName("Rename your playlist");
     setPlaylist([]);
   };
@@ -108,7 +111,10 @@ function App() {
                     id="save-playlist"
                     className="flex items-right justify-right mt-4"
                   >
-                    <Btn text={`Save playlist on Spotify`} onClick={handleSavePlaylist} />
+                    <Btn
+                      text={`Save playlist on Spotify`}
+                      onClick={handleSavePlaylist}
+                    />
                   </div>
                 )}
               </div>
